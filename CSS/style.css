@@ -1,0 +1,740 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* その他の要素 */
+html {scroll-behavior: smooth;}
+ul{padding-left:0;}
+li{list-style:none;}
+
+#splash {
+  /*fixedで全面に固定*/
+position: fixed;
+width: 100%;
+height: 100%;
+z-index: 999;
+background:#333;
+text-align:center;
+color:#fff;
+}
+
+/* Loading画像中央配置　*/
+#splash_logo {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+/* Loading アイコンの大きさ設定　*/
+#splash_logo img {
+width:350px;
+}
+
+/* fadeUpをするアイコンの動き */
+
+.fadeUp{
+animation-name: fadeUpAnime;
+animation-duration:0.5s;
+animation-fill-mode:forwards;
+opacity: 0;
+}
+
+@keyframes fadeUpAnime{
+from {
+  opacity: 0;
+transform: translateY(100px);
+}
+
+to {
+  opacity: 1;
+transform: translateY(0);
+}
+}
+
+/*========= レイアウトのためのCSS ===============*/
+
+.eachTextAnime span{opacity: 0;}
+.eachTextAnime.appeartext span{ animation:text_anime_on 1s ease-out forwards; }
+@keyframes text_anime_on {
+	0% {opacity:0;}
+	100% {opacity:1;}
+}
+
+
+
+#container{
+  width:100%;
+  height: 100vh;
+  background: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+a{
+  color: #333;
+}
+
+a:hover{
+   text-decoration: none;   
+}
+
+
+
+
+body {
+    margin: 0;
+    font-family: arial;
+    height: 100vh;
+    animation: bugfix infinite 1s;
+    -webkit-animation: bugfix infinite 1s;
+  }
+  
+  @keyframes bugfix {
+    from {
+      padding: 0;
+    }
+    to {
+      padding: 0;
+    }
+  }
+  @-webkit-keyframes bugfix {
+    from {
+      padding: 0;
+    }
+    to {
+      padding: 0;
+    }
+  }
+/*ハンバーガー*/
+
+  #overlay-button {
+    position: absolute;
+    right: 1vw;
+    padding: 26px 11px;
+    z-index: 5;
+    cursor: pointer;
+    user-select: none;
+  }
+  #overlay-button span {
+    height: 2px;
+    width: 35px;
+    border-radius: 2px;
+    background-color: white;
+    position: relative;
+    display: block;
+    transition: all .2s ease-in-out;
+  }
+  #overlay-button span:before {
+    top: -10px;
+    visibility: visible;
+  }
+  #overlay-button span:after {
+    top: 10px;
+  }
+  #overlay-button span:before, #overlay-button span:after {
+    height: 2px;
+    width: 35px;
+    border-radius: 2px;
+    background-color: white;
+    position: absolute;
+    content: "";
+    transition: all .2s ease-in-out;
+  }
+  #overlay-button:hover span, #overlay-button:hover span:before, #overlay-button:hover span:after {
+    background: #fff;
+  }
+  
+  input[type=checkbox] {
+    display: none; 
+    
+  }
+  
+  input[type=checkbox]:checked ~ #overlay {
+    visibility: visible; 
+  }
+  
+  input[type=checkbox]:checked ~ #overlay-button:hover span, input[type=checkbox]:checked ~ #overlay-button span {
+    background: transparent;
+    
+    
+  }
+  input[type=checkbox]:checked ~ #overlay-button span:before {
+    transform: rotate(45deg) translate(7px, 7px);
+  
+  }
+  input[type=checkbox]:checked ~ #overlay-button span:after {
+    transform: rotate(-45deg) translate(7px, -7px);
+  
+  
+  }
+  
+  #overlay {
+    height: 100vh;
+    width: 100vw;
+    background: #333;
+    z-index: 2;
+    visibility: hidden;
+    position: fixed;
+  }
+  /* #overlay.active {
+  
+  } */
+  #overlay ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    height: 100vh;
+    padding-left: 0;
+    list-style-type: none;
+  }
+  #overlay ul li {
+    padding: 3em;
+  }
+  #overlay ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5em;
+  }
+  #overlay ul li a:hover {
+    color: aqua!important;
+  }
+
+
+
+
+
+/*top*/
+
+.top-page{height: 60%;
+background-image: url(../images/Top_image.jpg);
+background-position: center;
+background-size: cover;
+}
+
+.top-title{font-size: clamp(40px, 8vw, 100px);
+width: 250px;
+margin: 0 30px; 
+padding: 65px 20px 10px 10px;
+color: aliceblue;}
+
+
+
+header nav ul{display: none;}
+
+    .tab{
+      max-width: 100%;
+      margin: 0 auto;
+      background-color:#34a0b6;/*押されていないボタンの色*/
+    }
+    
+    .tab-list{
+      display: flex;
+
+    }
+    
+    .tab-list-item{
+      width: 25%;
+      text-align: center;
+      padding: 8px 0;
+      cursor: pointer;
+      border-top: #f8f5f5 3px solid;/*ボタン周りの線の色*/
+    }
+    .tab-list-item:not(:last-child){
+      border-right: #f8f5f5 3px solid;/*ボタン周りの線の色*/
+    }
+
+    .tab-list-item:hover{opacity: 0.5;}
+
+    
+    .tab-contents{
+      background-color: #b7dcde;/*tabの色*/
+      display: none;
+      padding: 20px;
+    }
+    
+    .is-btn-active{
+      background-color:#b7dcde;/*表示されているボタンの色*/
+      font-weight: bold;
+    }
+    
+    .is-contents-active{
+      display: block;
+    }
+    
+
+#top-main div img {
+    width: 80%;
+    height: 50%;
+    margin: 2.6vw 2.6vw 2.6vw 10vw;
+    }
+    .gallery {
+      padding: 10px 10px;
+      border-radius: 5px;
+      box-sizing: border-box;
+      box-shadow: 0 0 6px 0 
+        rgba(0, 0, 0, 0.5);
+      transition: 0.2s;
+  }
+
+
+
+ /* マウスオーバー時 */
+  .gallery:hover{
+    background-color:#f8f5f5;
+        box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
+        transform: translateY(-5px);
+        cursor: pointer;
+      }
+
+ 
+
+
+
+
+
+
+/* フッター */
+#footer{padding: 30px 0;
+  background-color: #090000;}
+#footer nav ul {display: flex
+  ;justify-content: space-around;
+}
+#footer nav ul li{margin: 20px 10px ;}
+#footer nav ul li a{font-size: clamp(0.938rem, 0.827rem + 0.469vw, 1.25rem);;
+font-weight: bold;
+color: #f8f5f5;}
+#footer ul li a:hover {
+  color: aqua!important;
+}
+/*========= ページトップのためのCSS ===============*/
+/*リンクの形状*/
+#page-top a{
+	display: flex;
+	justify-content:center;
+	align-items:center;
+	background: #34a0b6;
+	border-radius: 50%;
+  width: clamp(1.875rem, 1.215rem + 2.817vw, 3.75rem);
+	height:clamp(1.875rem, 1.215rem + 2.817vw, 3.75rem);
+	color: #f8f5f5;
+	text-align: center;
+	text-transform: uppercase; 
+	text-decoration: none;
+  font-size: clamp(0.5rem, 0.194rem + 0.451vw, 0.8rem);
+	transition:all 0.3s;
+}
+
+#page-top a:hover{
+	background: #777;
+}
+
+/*リンクを右下に固定*/
+#page-top {
+	position: fixed;
+	right: 10px;
+	z-index: 2;
+    /*はじめは非表示*/
+	opacity: 0;
+	transform: translateY(100px);
+}
+
+/*　上に上がる動き　*/
+
+#page-top.UpMove{
+	animation: UpAnime 0.5s forwards;
+}
+@keyframes UpAnime{
+  from {
+    opacity: 0;
+	transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+	transform: translateY(0);
+  }
+}
+
+/*　下に下がる動き　*/
+
+#page-top.DownMove{
+	animation: DownAnime 0.5s forwards;
+}
+@keyframes DownAnime{
+  from {
+  	opacity: 1;
+	transform: translateY(0);
+  }
+  to {
+  	opacity: 1;
+	transform: translateY(100px);
+  }
+}
+
+
+
+
+
+
+
+
+/* about */
+.top-page-link{text-align: left;
+    font-size: 32px;
+    color: #ccc;
+    font-weight: bold;
+    padding: 20px;
+    }
+  .top-page-link a:hover {
+      color: aqua!important;
+    }
+    
+    
+    
+#header{background-color: #333;
+}
+
+.top-page-link a{color: aliceblue;}
+
+.about-title{margin: 19px 19px 40px 19px;
+  line-height: 100px;
+border-top: 2px solid;
+border-bottom: 2px solid;
+letter-spacing:rem;
+text-align: center;}
+
+#about-main{text-align: center;}
+.prof{text-align: left;}
+#about-main p {line-height: 33px;
+padding: 10px 20px 30px 20px;}
+
+
+
+.about-img {border-radius: 50%;
+    animation-name:fadeleftAnime;
+    animation-duration:3s;
+    animation-fill-mode:forwards;
+    opacity: 0;
+    }
+    @keyframes fadeleftAnime{
+      from {
+        opacity: 0;
+      transform: translateX(-100px);
+      }
+    
+      to {
+        opacity: 1;
+      transform: translateX(0);
+      }
+    }
+
+
+.about-catchcopy-jp{margin: 20px 20px 0;
+text-align: center;}
+.about-catchcopy-en{margin: 0 20px 20px;
+  text-align: center;
+font-size: 20px;}
+
+
+div .skill-pc{
+  display: none;}
+
+div .skill-sp{
+display: block;}
+
+div .skill-sp img{max-width: 100%;}
+
+.vision{text-align: left;
+  text-indent: 1rem;
+  margin: 0 25px 0 20px;
+}
+.vision2{margin-bottom: 50px;}
+
+/*work*/
+
+.work-title{margin: 35px;
+  font-size: clamp(26px, 26.857px + 0.357vw, 32px);}
+
+.work-main{text-align: center;}
+.work-main p {line-height: 33px;
+padding: 10px 20px;}
+
+.work-main video {width: 55%;
+padding-top: 40px;
+padding-bottom: 45px;}
+.work-main img{width: 45%;
+padding-top: 40px;
+padding-bottom: 45px;}
+
+h2{font-size: clamp(20px, 18.857px + 0.357vw, 24px);
+  text-align: left;
+  margin: 20px 50px 0 50px;}
+.work-text{text-align: left;
+  margin: 20px auto 30px auto;}
+
+.link{display: flex;
+justify-content: space-around;
+padding: 20px 0 60px 0;
+}
+
+
+.prev,.next{font-size: clamp(16px, 15.429px + 0.179vw, 18px);}
+
+
+/*contact*/
+h3{color: rgb(103, 102, 102);
+margin-bottom: 50px;}
+#contact_mail{background-color: #090000;
+  text-align: center;
+padding: 100px 0 100px 0;
+border-bottom: 1px #f8f5f5 solid;}
+#e-mail{
+  font-size: clamp(1.25rem, -8.6809rem + 22.0994vw, 3.75rem);
+font-family:serif;
+font-weight: bold;
+text-align:center;
+ -webkit-text-stroke: 1px #f8f5f5;
+  /*線の基点とするためrelativeを指定*/
+  position:relative;
+  /*リンクの形状*/ 
+color:#333;
+  padding: 10px 50px 10px 30px;
+
+display:inline-block;
+  text-decoration: none;
+  outline: none;}
+
+ #e-mail:hover{color:#f8f5f5;}
+ 
+
+/*線の設定*/
+#e-mail::before,
+#e-mail::after{
+content:'';
+  /*絶対配置で線の位置を決める*/
+position:absolute;
+z-index:1;
+bottom:0;
+left:0;
+   /*線の形状*/   
+background:#333;
+width:100%;
+height:2px;
+  /*アニメーションの指定*/
+transition:all 0.3s ease-in-out;
+}
+
+/*hover時に伸びる線の形状*/   
+#e-mail::after{
+width:0;
+background:#ccc;
+}
+
+/*hover時に100%に伸びる*/   
+#e-mail:hover::after {
+width:100%;
+}
+/*メール以外の下線を消す*/
+a{text-decoration: none;}
+
+
+
+
+
+
+
+/*スマホなどの横向き*/
+
+@media (orientation: landscape){
+  .top-page{height: 100%;
+  background-image: url(../images/Top_image.jpg);
+  background-position: center top;
+  background-size: 100%;
+  }
+
+  .top-title{font-size: clamp(10px, 8vw, 50px);
+    width: 300px;
+    margin: 0 50px; 
+    padding: 65px 20px 10px 10px;
+    color: aliceblue;}
+
+
+    footer nav ul li{margin: 20px 50px ;}
+    
+  }
+
+
+/* タブレット */
+@media screen and (min-width:719px){
+.top-page{height: 90%;
+  background-image: url(../images/Top_image.jpg);
+  background-position: center;
+  background-size: 200%;
+  ;}
+
+   .top-title{font-size: calc(1em + 5vw);
+  margin: 0 50px 0 150px;}
+
+
+
+  .tab-list{
+    display: flex;
+  }
+  
+  .tab-list-item{
+    width: 25%;
+    text-align: center;
+    padding: 8px 0;
+    cursor: pointer;
+    font-size: 24px;
+  }
+  
+
+  .gallery{margin-left: 25px;}
+
+  #top-main div img {
+    width: 45%;
+    height: 50%;
+    margin: 1vw 1vw 1vw 2.5vw;
+    }
+    .gallery {
+      margin: 2.6vw 0 0 3vw;
+      padding: 10px 10px;
+      border-radius: 5px;
+      box-sizing: border-box;
+      box-shadow: 0 0 6px 0 
+        rgba(0, 0, 0, 0.5);
+      transition: 0.2s;
+  }
+
+
+
+ /* マウスオーバー時 */
+  .gallery:hover{
+    background-color: #f8f5f5;
+        box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
+        transform: translateY(-5px);
+        cursor: pointer;
+        
+      }
+
+
+  .about_spirit,.about_more{display: none;}
+}
+
+
+
+
+
+
+
+ /*メディアクエリ PC*/
+
+@media screen and (min-width:960px) {
+
+#overlay-input,#overlay-button,#overlay{display: none;}
+
+
+header nav ul{display: flex;
+justify-content: right;
+background-color: #090000;}
+header nav ul .nav{margin: 0 50px;
+}
+header nav ul .nav a{color: #ccc;
+  font-size: large;
+line-height: 10vh;}
+header nav ul .nav a:hover {
+  color: aqua!important;
+}
+
+header nav ul .top-page-link {margin-left: 0px;}
+
+/*top*/
+  .top-page{height: 100%;
+  background-image: url(../images/Top_image.jpg);
+  background-position: center;
+  background-size: cover;
+  ;}
+
+  .top-title{font-size: calc(1em + 5vw);
+  margin: 0 50px 0 150px;}
+
+  .tab{
+    background-color: #b7dcde;
+  }
+
+  .tab-list{
+    display: flex;
+  }
+  
+  .tab-list-item{
+    font-size: 24px;
+    background-color:#34a0b6;/*押されていないボタンの色*/
+  }
+
+  .tab-list-item:not(:last-child){
+    border-right: #f8f5f5 3px solid;
+  }
+  
+  .tab-contents{
+    margin-left:6.2vw;
+    background-color: #b7dcde;
+    display: none;
+    padding: 20px 50px ;
+    margin-top: 1.04vw;
+  }
+  
+  .is-btn-active{
+    background-color:#b7dcde;/*表示されているボタンの色*/
+    font-weight: bold;
+  }
+  
+  .is-contents-active{
+    display: block;
+  }
+
+  
+
+  #top-main div img {
+    width: 29%;
+    height: 50%;
+    margin: 0.7%;
+  
+    }
+
+  
+/*about*/
+
+div .skill-sp{
+  display: none;}
+
+div .skill-pc{
+display: block;}
+
+div .skill-pc img{max-width: 50%;}
+.prof{text-align: center;}
+.vision{text-align: center;}
+
+/* work */
+
+h2{text-align: left;
+  margin: 20px 200px 0 200px;}
+  .work-text{text-align: left;
+    margin: 20px 200px 30px 200px;}
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
